@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.polling.votingapp.model.OptionVote;
 import com.polling.votingapp.model.Poll;
@@ -40,6 +41,7 @@ public class PollService {
     /*
      * Method to do vote 
      */
+    @Transactional
     public void getVote(Long pollId, int optionIndex) {
 
         // Get poll by id from db
@@ -61,6 +63,12 @@ public class PollService {
         selectedOption.setVoteCount(selectedOption.getVoteCount() + 1);
 
         pollRepository.save(poll);
+
+    }
+
+    /* create a method to delete the poll  using pollID */
+    public void deletePoll(Long pollid){
+
 
     }
 }
